@@ -16,9 +16,11 @@ router.use(express.json());
 router.post('/transacciones', function(req, res){
     console.log(req.body, typeof req.body);
     TransaccionesRepositorio.guardar((req.body));
-    res.send(JSON.stringify({Estado:"Transacción exitosa",
-    CtaDestino:"*****8470",
-    Monto: 600.00}));
+    res.send(JSON.stringify({
+      Estado: 'Exitoso',
+      Monto: req.body.Monto,
+      Cuenta: req.body.NumCuenta
+    }));
 });
 
 router.get('/', function (req, res) {

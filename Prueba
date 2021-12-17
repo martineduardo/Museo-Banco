@@ -1,0 +1,13 @@
+import requests
+import json
+
+payload = {
+    "id_transaccion": 444,
+    "Fecha": "",
+    "Monto": 555,
+    "NumCuenta": 6341090898
+}
+
+r = requests.post("http://189.173.181.8:8080/api/transacciones", json=payload)
+
+print(r.text)

@@ -1,4 +1,4 @@
-/*drop database banco;*/
+drop database banco;
 create database banco;
 use banco;
 
@@ -44,7 +44,8 @@ create table Transaccion(
 	id_Transaccion int unique auto_increment not null,
     fecha datetime not null,
     monto double not null,
-    numTarjeta varchar(16) not null,
+    Tarjetaorigen varchar(16) not null,
+    Tarjetadestino varchar(16) not null,
     estado bool,
     primary key (id_Transaccion),
     foreign key (numTarjeta) references Tarjeta(numTarjeta)
@@ -68,5 +69,4 @@ create table Pago(
     primary key (id_Pago),
     foreign key (id_Prestamo) references Prestamo(id_Prestamo)
 );
-
 
