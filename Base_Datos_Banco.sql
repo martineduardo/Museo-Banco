@@ -3,7 +3,7 @@ create database banco;
 use banco;
 
 create table Sucursal(
-	id_Sucursal int not null,
+	id_Sucursal int unique auto_increment not null,
     nombre varchar(50) not null,
     ubicacion varchar(50) not null,
     primary key (id_Sucursal)
@@ -21,7 +21,7 @@ create table Sucursal(
 );*/
 
 create table Cuenta(
-	numCuenta int unique auto_increment not null,
+	numCuenta varchar(10) unique not null,
     nombre_p varchar(20) not null,
     npellido_p varchar(10) not null,
     npellido_m varchar(20) not null,
@@ -35,7 +35,7 @@ create table Tarjeta(
 	numTarjeta varchar(16) unique not null,
     saldo double not null,
     id_Sucursal int not null,
-    numCuenta int not null,
+    numCuenta varchar(10) not null,
     primary key (numTarjeta),
     foreign key (numCuenta)references Cuenta(numCuenta)
 );
@@ -52,7 +52,7 @@ create table Transaccion(
 );
 
 create table Prestamo(
-	id_Prestamo int not null,
+	id_Prestamo int unique auto_increment not null,
     nombre varbinary(50) not null,
     importe double not null,
     motivo varchar(100) not null,
@@ -62,7 +62,7 @@ create table Prestamo(
 );
 
 create table Pago(
-	id_Pago int not null,
+	id_Pago int unique auto_increment not null,
     fecha_pago datetime not null,
     importe double not null,
     id_Prestamo int not null,
