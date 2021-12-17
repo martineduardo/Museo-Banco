@@ -48,7 +48,7 @@ create table Transaccion(
     Tarjetadestino varchar(16) not null,
     estado bool,
     primary key (id_Transaccion),
-    foreign key (numTarjeta) references Tarjeta(numTarjeta)
+    foreign key (Tarjetaorigen) references Tarjeta(numTarjeta)
 );
 
 create table Prestamo(
