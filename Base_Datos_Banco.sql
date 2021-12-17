@@ -56,7 +56,7 @@ create table Prestamo(
     nombre varbinary(50) not null,
     importe double not null,
     motivo varchar(100) not null,
-    numCuenta int not null,
+    numCuenta varchar(10) not null,
     primary key (id_Prestamo),
     foreign key (numCuenta) references Cuenta(numCuenta)
 );
