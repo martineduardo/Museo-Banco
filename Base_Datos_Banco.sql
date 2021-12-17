@@ -69,3 +69,11 @@ create table Pago(
     primary key (id_Pago),
     foreign key (id_Prestamo) references Prestamo(id_Prestamo)
 );
+
+insert into Sucursal values('Bancoweno', 'Muy lejos');
+
+insert into Cuenta values ('6621572501', 'Luis Jorge', 'Barcelo', 'Navarro', '1234567890', 1);
+insert into Cuenta values ('6341090898', 'Martin Eduardo', 'Amavizca', 'Gonzalez', '1234567890', 1);
+
+insert into Tarjeta values('6969696969696969', 1000.00, 1, '6621572501');
+insert into Tarjeta values('1111111111111111', 1000.00, 1, '6341090898');
