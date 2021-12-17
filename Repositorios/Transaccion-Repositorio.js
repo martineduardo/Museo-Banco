@@ -4,7 +4,7 @@ const mysql = require('mysql');
 class TransaccionRepositorio{
     guardar(Datos) {
         //var Datos  = {id_transaccion: 1, Fecha: mysql.raw('NOW()'), Monto: 20000.00, NumCuenta: 6341090898};
-        Datos.Fecha =  mysql.raw('NOW()');
+        //Datos.Fecha =  mysql.raw('NOW()');
 
         var query = con.query('INSERT INTO transaccion SET ?', Datos, function (error, results, fields) {
         if (error) throw error;
