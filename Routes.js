@@ -16,7 +16,11 @@ router.use(express.json());
 router.post('/transacciones', function(req, res){
     console.log(req.body, typeof req.body);
     TransaccionesRepositorio.guardar((req.body));
-    res.send(TransaccionesRepositorio.enviar(req.body.id_Transaccion));
+    res.send(JSON.stringify({
+      Estado: 'Exitoso',
+      Monto: req.body.monto,
+      Cuenta: req.body.Tarjetaorigen
+    }));
 });
 
 router.get('/', function (req, res) {

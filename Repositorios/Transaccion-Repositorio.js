@@ -13,13 +13,14 @@ class TransaccionRepositorio{
         console.log(query.sql); // INSERT INTO transaccion SET `id` = 1, `title` = 'Hello MySQL'
     }
 
-    enviar(id){
-        var query = con.query('SELECT * FROM transaccion WHERE ?', id, function (error, rows, fields){
+    enviar(id, fecha){
+        var query = con.query('SELECT * FROM transaccion WHERE ?', id, fecha, function (error, results, fields){
             if(error) throw error;
             // Neat!
         });
-        var resultado = json(query.sql)
-        return resultado;
+        //var resultado = JSON.stringify(query.sql);
+        console.log(query.sql);
+        //return resultado;
     }
     
 }
