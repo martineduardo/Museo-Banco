@@ -18,8 +18,8 @@ router.post('/transacciones', function(req, res){
     TransaccionesRepositorio.guardar((req.body));
     res.send(JSON.stringify({
       Estado: 'Exitoso',
-      Monto: req.body.Monto,
-      Cuenta: req.body.NumCuenta
+      Monto: req.body.monto,
+      Cuenta: req.body.Tarjetaorigen
     }));
 });
 
