@@ -13,15 +13,28 @@ router.use(express.json());
     next()
   })*/
 
-router.post('/transacciones', function(req, res){
-    console.log(req.body, typeof req.body);
+//router.post('/transacciones', function(req, res){
+    /*console.log(req.body, typeof req.body);
     TransaccionesRepositorio.guardar((req.body));
+    var resultado  = TransaccionesRepositorio.enviar(req.body.Tarjetaorigen, req.body.fecha)
     res.send(JSON.stringify({
-      Estado: 'Exitoso',
-      Monto: req.body.monto,
-      Cuenta: req.body.Tarjetaorigen
+      //Estado: 'Exitoso',
+      //Monto: req.body.monto,
+      //Cuenta: req.body.Tarjetaorigen
+      resultado
     }));
-});
+});*/
+
+router.post('/transacciones', function (req, res) {
+  TransaccionesRepositorio.guardar((req.body));
+  TransaccionesRepositorio.enviar(req.body.Tarjetaorigen, req.body.fecha).then( (resultado) => {
+ 
+    res.send({
+     resultado
+    });
+ 
+  });
+ })
 
 router.get('/', function (req, res) {
     res.send('Hola')
