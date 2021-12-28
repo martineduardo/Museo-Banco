@@ -5,10 +5,10 @@ const app = express()
 const mysql = require("mysql")
 
 const con = mysql.createPool({
-    host: 'Localhost',
-    user: 'UsuarioBanco',
-    password: 'banco',
-    database: 'banco',
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "banco"
 });
 
 app.use(cors());
@@ -21,7 +21,7 @@ app.post('/api/registro', (req, res) => {
     const apellidoMat = req.body.apellidoMat
     const telCel = req.body.telCel
 
-    const sqlInsert = "insert into Cuenta(nombre_p, npellido_p, npellido_m, numTelefonico, id_sucursal) values(? ,? ,? ,? ,69429);"
+    const sqlInsert = "insert into Cuenta(nombre_p, apellido_p, apellido_m, numTelefonico, id_sucursal) values(? ,? ,? ,? ,1);"
     con.query(sqlInsert, [nombrePila, apellidoPat, apellidoMat, telCel], (err, result) => {
         console.log(err);
     });
