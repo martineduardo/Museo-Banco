@@ -52,7 +52,7 @@ create table Transaccion(
 
 create table Prestamo(
 	id_Prestamo int auto_increment not null,
-    nombre varbinary(50) not null,
+    nombre varchar(50) not null,
     importe double not null,
     motivo varchar(100) not null,
     numCuenta int not null,

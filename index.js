@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 const routes = require('./Routes');
 let transactions = [];
 //const router = require('./routes')
