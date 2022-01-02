@@ -1,5 +1,6 @@
 var con = require('../BD_Conexion');
 const mysql = require('mysql');
+const res = require('express/lib/response');
 
 class TransaccionRepositorio{
     guardar(Datos) {
@@ -7,19 +8,18 @@ class TransaccionRepositorio{
         //Datos.Fecha =  mysql.raw('NOW()');
         
         //Experimento #1
-        var query2 = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (error, results, fields){
-            
-            if (error) throw error;
-            // Neat!
+        var query = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (err, rows){
+            res.json(rows);
+            console.log(rows);
+            var tarjeta = rows[0].tarjetaDestino;
+            if(tarjeta == Datos.tarjetaDestino){
+                var query = con.query('INSERT INTO transaccion SET ?', Datos, function (error, results, fields) {
+                    if (error) throw error;
+                    // Neat!
+                    });
+                    console.log(query.sql); // INSERT INTO transaccion SET `id` = 1, `title` = 'Hello MySQL'
+            }
         });
-        
-        if(Datos.tarjetaDestino == query2.tarjetaDestino){
-            var query = con.query('INSERT INTO transaccion SET ?', Datos, function (error, results, fields) {
-                if (error) throw error;
-                // Neat!
-                });
-                console.log(query.sql); // INSERT INTO transaccion SET `id` = 1, `title` = 'Hello MySQL'
-        }
     }
 
     async enviar(id, fecha){
