@@ -50,23 +50,6 @@ router.post('/transacciones', function (req, res) {
   });
  })
 
- router.post('/', function (req, res) {
-   const respuesta = null;
-  PrestamosRepositorio.enviar(req.body).then ( (resultado) => {
-    resultado = respuesta
-  }) 
-  axios.post('189.173.151.83:8000', {
-    respuesta
-  }).then(data => {
-      res.status(200).send({
-          message: "Exito"
-      })
-      console.log(message)
-  }).catch(error => {
-      console.log(error)
-  })
-  })
-
 router.get('/', function (req, res) {
     res.send('Hola')
   })
