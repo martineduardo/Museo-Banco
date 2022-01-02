@@ -1,6 +1,7 @@
 
 const { Router } = require('express');
 const express = require('express');
+const axios = require('axios')
 const router = express.Router();
 const TransaccionRepositorio = require('./Repositorios/Transaccion-Repositorio');
 const PrestamoRepositorio = require('./Repositorios/Prestamo-Repositorio');
@@ -37,17 +38,34 @@ router.post('/transacciones', function (req, res) {
  
   });
  })
-
+//Modificado para ser usado con axios
  router.post('/prestamos', function (req, res) {
-  PrestamosRepositorio.guardar((req.body));
-  PrestamosRepositorio.enviar(req.body.Tarjetadestino, req.body.fecha).then( (resultado) => {
- 
+  PrestamosRepositorio.guardar((req.body)); //Funciona con axios
+  PrestamosRepositorio.enviar(4152313868721916).then( (resultado) => {
+
     res.send({
+      
      resultado
     });
- 
   });
  })
+
+ router.post('/', function (req, res) {
+   const respuesta = null;
+  PrestamosRepositorio.enviar(req.body).then ( (resultado) => {
+    resultado = respuesta
+  }) 
+  axios.post('189.173.151.83:8000', {
+    respuesta
+  }).then(data => {
+      res.status(200).send({
+          message: "Exito"
+      })
+      console.log(message)
+  }).catch(error => {
+      console.log(error)
+  })
+  })
 
 router.get('/', function (req, res) {
     res.send('Hola')

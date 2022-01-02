@@ -88,3 +88,5 @@ delete from Transaccion where id_Transaccion = 4;
 delete from Transaccion where id_Transaccion = 5;
 delete from Transaccion where id_Transaccion = 6;
 delete from Transaccion where id_Transaccion = 7;
+
+insert into Transaccion (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values('2022-01-01', 1000, '5204165457812794', '4152313868721916', 1);
