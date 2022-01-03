@@ -9,7 +9,6 @@ class TransaccionRepositorio{
         
         //Experimento #1
         var query = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (err, rows){
-            res.json(rows);
             console.log(rows);
             var tarjeta = rows[0].numTarjeta;
             if(tarjeta == Datos.tarjetaDestino){
