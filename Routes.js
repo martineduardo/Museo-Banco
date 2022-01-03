@@ -30,7 +30,7 @@ router.use(express.json());
 
 router.post('/transacciones', function (req, res) {
   TransaccionesRepositorio.guardar((req.body));
-  TransaccionesRepositorio.enviar(req.body.Tarjetaorigen, req.body.fecha).then( (resultado) => {
+  TransaccionesRepositorio.enviar(req.body.tarjetaOrigen, req.body.fecha).then( (resultado) => {
  
     res.send({
      resultado
