@@ -11,7 +11,7 @@ class TransaccionRepositorio{
         var query = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (err, rows){
             res.json(rows);
             console.log(rows);
-            var tarjeta = rows[0].tarjetaDestino;
+            var tarjeta = rows[0].numTarjeta;
             if(tarjeta == Datos.tarjetaDestino){
                 var query = con.query('INSERT INTO transaccion SET ?', Datos, function (error, results, fields) {
                     if (error) throw error;
