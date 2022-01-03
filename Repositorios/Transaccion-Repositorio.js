@@ -8,8 +8,8 @@ class TransaccionRepositorio{
         //Datos.Fecha =  mysql.raw('NOW()');
         
         //Experimento #1
-        var query = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (err, rows){
-            console.log(rows);
+        var query2 = con.query("SELECT numTarjeta FROM Tarjeta WHERE numTarjeta = "+ Datos.tarjetaDestino, function (err, rows){
+            console.log(query2);
             var tarjeta = rows[0].numTarjeta;
             if(tarjeta == Datos.tarjetaDestino){
                 var query = con.query('INSERT INTO transaccion SET ?', Datos, function (error, results, fields) {
