@@ -126,10 +126,14 @@ class PrestamoRepositorio{
     async enviar(Datos){ //Modificado para conectividad con restauraciones
         var msg = await this.guardar(Datos);
         if(msg == null){
+            const date = new Date();
+            const mysqlDate = date.toISOString().split("T")[0];
+
             const callback = new Promise((resolve, reject) => (
                 con.query(
-                    'SELECT * FROM transaccion WHERE tarjetaDestino = ?',
-                    [4152313868721916],
+                    'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',
+                    [4152313868721916,
+                    mysqlDate],
                     function (error, results, fields) {
                         if (error) reject(error);
             
