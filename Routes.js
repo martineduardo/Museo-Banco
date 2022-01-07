@@ -38,9 +38,8 @@ router.post('/transacciones', function (req, res) {
   });
  })
 //Modificado para ser usado con axios
- router.post('/prestamos', function (req, res) {
-  PrestamosRepositorio.guardar((req.body)); //Funciona con axios
-  PrestamosRepositorio.enviar(4152313868721916).then( (resultado) => {
+router.post('/prestamos', function (req, res) { //Funciona con axios
+  PrestamosRepositorio.enviar(req.body).then( (resultado) => {
 
     res.send({
       

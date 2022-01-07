@@ -54,7 +54,7 @@ class TransaccionRepositorio{
             const mysqlDate = date.toISOString().split("T")[0];
 
             if(saldoOrigen >= deposito){
-                
+
                 var saldoRestado = saldoOrigen - deposito;
                 var saldoTotal = saldoDestino + deposito;
                 
@@ -106,11 +106,14 @@ class TransaccionRepositorio{
 
     async enviar(Datos){
         await this.guardar(Datos);
+        
+        const date = new Date();
+        const mysqlDate = date.toISOString().split("T")[0];
         const callback = new Promise((resolve, reject) => (
             con.query(
                 'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',
                 [Datos.tarjetaDestino,
-                Datos.fecha],
+                mysqlDate],
                 function (error, results, fields) {
                     if (error) reject(error);
         
