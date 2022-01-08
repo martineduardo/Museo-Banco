@@ -52,7 +52,7 @@ class TransaccionRepositorio{
             var deposito = await this.jsonParser(Datos);
 
             const date = new Date();
-            const mysqlDate = date.toISOString().split("T")[0];
+            const mysqlDate = date.toISOString().split("T")[0]+' '+date.toTimeString().split(' ')[0];
 
             if(saldoOrigen >= deposito){
 
@@ -111,7 +111,7 @@ class TransaccionRepositorio{
         var msg = await this.guardar(Datos);
         if (msg == null){
             const date = new Date();
-            const mysqlDate = date.toISOString().split("T")[0];
+            const mysqlDate = date.toISOString().split("T")[0]+' '+date.toTimeString().split(' ')[0];
             const callback = new Promise((resolve, reject) => (
                 con.query(
                     'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',

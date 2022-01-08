@@ -70,7 +70,7 @@ class PrestamoRepositorio{
 
         if(saldoOrigen >= deposito){
             const date = new Date();
-            const mysqlDate = date.toISOString().split("T")[0];
+            const mysqlDate = date.toISOString().split("T")[0]+' '+date.toTimeString().split(' ')[0];
 
             var saldoRestado = saldoOrigen - deposito;
             var saldoTotal = saldoDestino + deposito;
@@ -96,7 +96,7 @@ class PrestamoRepositorio{
             console.log("Transaccion exitosa!");
         }else{
             const date = new Date();
-            const mysqlDate = date.toISOString().split("T")[0];
+            const mysqlDate = date.toISOString().split("T")[0]+' '+date.toTimeString().split(' ')[0];
 
             var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '5515070400407615', "+ 0 +")",
                 function (error, results, fields) {
@@ -126,7 +126,7 @@ class PrestamoRepositorio{
     async enviar(Datos){ //Modificado para conectividad con restauraciones
         await this.guardar(Datos);
         const date = new Date();
-            const mysqlDate = date.toISOString().split("T")[0];
+            const mysqlDate = date.toISOString().split("T")[0]+' '+date.toTimeString().split(' ')[0];
 
             const callback = new Promise((resolve, reject) => (
                 con.query(
