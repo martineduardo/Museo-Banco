@@ -75,11 +75,18 @@ insert into Sucursal (nombre,ubicacion) values('Norte', 'CDA. Puruñuela');
 insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('Luis Jorge', 'Barcelo', 'Navarro', '6621572501', 1);
 insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('Martin Eduardo', 'Amavizca', 'Gonzalez', '6341090898', 1);
 insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('Luis Marcos', 'Rascon', 'Soto', '6624473145', 1);
-
+insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('Oscar Guillermo', 'Silva', 'Leon', '6371159272', 1);
+insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('Leonardo', 'Minjares', 'Dominguez', '6624670538', 1);
+insert into Cuenta (nombre_p, apellido_p, apellido_m, numTelefonico, id_Sucursal) values ('David', 'Amavizca', 'Gonzalez', '6624670566', 1);
 
 insert into Tarjeta (numTarjeta, saldo, numCuenta) values('4152313868721916', 1000.00, 1);
-insert into Tarjeta (numTarjeta, saldo, numCuenta) values('4152313853153836', 1000.00, 2);
-insert into Tarjeta (numTarjeta, saldo, numCuenta) values('5204165457812794', 1000.00, 3);
+insert into Tarjeta (numTarjeta, saldo, numCuenta) values('4152313853153836', 5000.00, 2);
+insert into Tarjeta (numTarjeta, saldo, numCuenta) values('5204165457812794', 100000.00, 3);
+insert into Tarjeta (numTarjeta, saldo, numCuenta) values('4539218311924617', 1000.00, 4);
+insert into Tarjeta (numTarjeta, saldo, numCuenta) values('5515070400407615', 1000.00, 5);
+insert into Tarjeta (numTarjeta, saldo, numCuenta) values('5543070466407615', 300.00, 6);
+
+
 
 SELECT * FROM Transaccion;
 

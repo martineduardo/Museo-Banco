@@ -75,7 +75,7 @@ class PrestamoRepositorio{
             var saldoRestado = saldoOrigen - deposito;
             var saldoTotal = saldoDestino + deposito;
 
-            var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '4152313868721916', "+ 1 +")", function (error, results, fields){
+            var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '5515070400407615', "+ 1 +")", function (error, results, fields){
                 if (error) throw error;
             });
 
@@ -98,21 +98,21 @@ class PrestamoRepositorio{
             const date = new Date();
             const mysqlDate = date.toISOString().split("T")[0];
 
-            var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '4152313868721916', "+ 0 +")",
+            var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '5515070400407615', "+ 0 +")",
                 function (error, results, fields) {
                     if (error) throw error;
                 });
-            //console.log("Fondos insuficientes!");
-            return msg = "Fondos insufucientes!"
+            console.log("Fondos insuficientes!");
+            //return msg = "Fondos insufucientes!"
         }
         }else
         {
-            //console.log("Número de cuenta inexistente!");
-            return msg = "Número de cuenta inexistente!";
+            console.log("Número de cuenta inexistente!");
+            //return msg = "Número de cuenta inexistente!";
         }
         }else{
-            //console.log("Ya existe un prestamo!");
-            return msg = "Ya existe un prestamo";
+            console.log("Ya existe un prestamo!");
+            //return msg = "Ya existe un prestamo";
             
         }
     }
@@ -124,15 +124,14 @@ class PrestamoRepositorio{
     }
 
     async enviar(Datos){ //Modificado para conectividad con restauraciones
-        var msg = await this.guardar(Datos);
-        if(msg == null){
-            const date = new Date();
+        await this.guardar(Datos);
+        const date = new Date();
             const mysqlDate = date.toISOString().split("T")[0];
 
             const callback = new Promise((resolve, reject) => (
                 con.query(
                     'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',
-                    [4152313868721916,
+                    [5515070400407615,
                     mysqlDate],
                     function (error, results, fields) {
                         if (error) reject(error);
@@ -142,10 +141,6 @@ class PrestamoRepositorio{
                 ))
             )
             return callback.then(res => res).catch(err => {throw err})
-        }
-        else{
-            return msg;
-        }
         
     }
     
