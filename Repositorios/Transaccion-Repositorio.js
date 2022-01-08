@@ -6,6 +6,7 @@ class TransaccionRepositorio{
     async guardar(Datos){
             
         //Validacion de Tarjetas
+        var msg = null;
         const callback = new Promise((resolve,reject) => {
             con.query(
                 'Select numTarjeta From Tarjeta where numTarjeta = ?',
@@ -90,11 +91,13 @@ class TransaccionRepositorio{
                 function (error, results, fields) {
                     if (error) throw error;
                 });
-                console.log("Fondos insuficientes!");
+                //console.log("Fondos insuficientes!");
+                return msg = "Fondos insuficientes!";
             }
         }
         else{
-            console.log("Cuenta inexistente!");
+            //console.log("Cuenta inexistente!");
+            return msg = "Cuenta inexistente!";
         }
     }
 
@@ -105,23 +108,28 @@ class TransaccionRepositorio{
     }
 
     async enviar(Datos){
-        await this.guardar(Datos);
+        var msg = await this.guardar(Datos);
+        if (msg == null){
+            const date = new Date();
+            const mysqlDate = date.toISOString().split("T")[0];
+            const callback = new Promise((resolve, reject) => (
+                con.query(
+                    'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',
+                    [Datos.tarjetaDestino,
+                    mysqlDate],
+                    function (error, results, fields) {
+                        if (error) reject(error);
+            
+                        resolve(results);
+                    }
+                ))
+            )
+            return callback.then(res => res).catch(err => {throw err})
+        }
+        else{
+            return msg;
+        }
         
-        const date = new Date();
-        const mysqlDate = date.toISOString().split("T")[0];
-        const callback = new Promise((resolve, reject) => (
-            con.query(
-                'SELECT * FROM transaccion WHERE tarjetaDestino = ? AND fecha = ?',
-                [Datos.tarjetaDestino,
-                mysqlDate],
-                function (error, results, fields) {
-                    if (error) reject(error);
-        
-                    resolve(results);
-                }
-            ))
-        )
-        return callback.then(res => res).catch(err => {throw err})
         
     }
     
