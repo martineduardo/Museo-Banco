@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import {Button} from '@material-ui/core';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Formulario, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './Elementos/Formulario';
@@ -41,20 +40,7 @@ function Registro() {
       else {
         cambiarFormularioValido(false);
       }
-
-    /*Axios.post('http://localhost:3001/api/registro', {
-      nombrePila: nombreReg.campo,
-      apellidoPat: apellidoPReg.campo,
-      apellidoMat: apellidoMReg.campo,
-      telCel: telReg.campo
-    }).then(() => {
-      alert("Cuenta registrada")
-    });*/
   };
-
-  /*const onSubmit = (e) => {
-    e.preventDefault();
-  }*/
 
   const expresiones = {
     nombre: /^[a-zA-ZÁ-ÿ]{3,20}/,
@@ -67,7 +53,6 @@ function Registro() {
       <div className="icon">
         <div className="icon_class"></div>
         <div className="text">Registro</div>
-        
       </div>
       <div className="form">
         <Formulario action="" onSubmit={submitCuenta}>
@@ -118,7 +103,7 @@ function Registro() {
           {formularioValido === false && <MensajeError>
             <p>
               <FontAwesomeIcon icon={faExclamationTriangle}/>
-              <b>Error:</b> Por favor rellene el formulario correctamenrte.
+              <b>Error:</b> Por favor rellene el formulario correctamente.
             </p>
           </MensajeError>}
           <br/>

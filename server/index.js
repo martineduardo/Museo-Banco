@@ -56,6 +56,18 @@ app.post('/api/estado', (req, res) => {
     })
 })
 
+app.post('/api/prestamo', (req, res) => {
+    const pNombre = req.body.pNombre
+    const importeP = req.body.importeP
+    const motivoP = req.body.motivoP
+    const numCuentaP = req.body.numCuentaP
+
+    const sqlInsertar = "insert into Prestamo (nombre, importe, motivo, numCuenta) values (?, ?, ?, ?);"
+    con.query(sqlInsertar, [pNombre, importeP, motivoP, numCuentaP], (err, result) => {
+        console.log(err);
+    });
+})
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 })
