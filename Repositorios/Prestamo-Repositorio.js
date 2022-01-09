@@ -34,10 +34,6 @@ class PrestamoRepositorio{
         var cuenta = resCuenta[0];
 
         if(cuenta != null){
-            var query = con.query('INSERT INTO Prestamo SET ?', Datos, function (error, results, fields) {
-                if (error) throw error;
-                // Neat!
-                });
 
             const callbackOrigen = new Promise((resolve, reject) =>{
             con.query(
@@ -75,18 +71,23 @@ class PrestamoRepositorio{
             var saldoRestado = saldoOrigen - deposito;
             var saldoTotal = saldoDestino + deposito;
 
-            var query = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '5515070400407615', "+ 1 +")", function (error, results, fields){
+            var query = con.query('INSERT INTO Prestamo SET ?', Datos, function (error, results, fields) {
+                if (error) throw error;
+                // Neat!
+                });
+
+            var query2 = con.query("INSERT INTO Transaccion  (fecha, monto, tarjetaOrigen, tarjetaDestino, estado) values (' " + mysqlDate + "', "+ deposito +", '5204165457812794', '5515070400407615', "+ 1 +")", function (error, results, fields){
                 if (error) throw error;
             });
 
-            var query2 = con.query('Update tarjeta Set saldo = ? Where numCuenta = ?',
+            var query3 = con.query('Update tarjeta Set saldo = ? Where numCuenta = ?',
                 [saldoRestado,
                 3],
                 function (error, results, fields){
                     if(error) throw error;
             });
 
-            var query3 = con.query('Update tarjeta Set saldo = ? Where numCuenta = ?',
+            var query4 = con.query('Update tarjeta Set saldo = ? Where numCuenta = ?',
             [saldoTotal,
             Datos.numCuenta],
             function (error, results, fields){
