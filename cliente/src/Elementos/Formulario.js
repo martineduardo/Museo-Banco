@@ -26,7 +26,7 @@ const Label = styled.label`
 `;
 
 const GrupoInput = styled.div`
-    position: relative;
+    //position: relative;
     z-index: 90;
 `;
 
@@ -86,6 +86,38 @@ const ContenedorBotonCentrado = styled.div`
     grid-column: span 2;
 `;
 
+const Boton = styled.button`
+    height: 45px;
+    line-height: 45px;
+    width: 38%;
+    background: #6004bc;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: .1s ease all;
+
+    &:hover {
+        box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
+    }
+`;
+
+const MensajeExito = styled.p`
+    height: 45px;
+    line-height: 45px;
+    background: ${colores.exito};
+    padding: 0px 15px;
+    border-radius: 3px;
+    grid-columns: span2;
+    p {
+        margin 0;
+    }
+    b {
+        margin-left: 10px
+    }
+`;
+
 const MensajeError = styled.div`
     height: 45px;
     line-height: 45px;
@@ -101,4 +133,4 @@ const MensajeError = styled.div`
     }
 `;
 
-export {Formulario, Label, GrupoInput, Input, LeyendaError, IconoValidacion, ContenedorBotonCentrado, MensajeError};
+export {Formulario, Label, GrupoInput, Input, LeyendaError, IconoValidacion, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError};

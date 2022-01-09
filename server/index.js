@@ -3,11 +3,12 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
 const mysql = require("mysql")
+//var x = 1
 
 const con = mysql.createPool({
     host: "localhost",
-    user: "root",
-    password: "123456",
+    user: "root", //root
+    password: "123456", //123456
     database: "banco"
 });
 
@@ -20,11 +21,25 @@ app.post('/api/registro', (req, res) => {
     const apellidoPat  = req.body.apellidoPat
     const apellidoMat = req.body.apellidoMat
     const telCel = req.body.telCel
+    /*x = x + 1;
+    var numTarjeta = x + 4152313868721916;*/
 
     const sqlInsert = "insert into Cuenta(nombre_p, apellido_p, apellido_m, numTelefonico, id_sucursal) values(? ,? ,? ,? ,2);"
     con.query(sqlInsert, [nombrePila, apellidoPat, apellidoMat, telCel], (err, result) => {
         console.log(err);
     });
+
+    /*const sqlRead = "select numCuenta from Cuenta where numTelefonico = ?;"
+    con.query(sqlRead, [telCel], (err, result) => {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.send(result);
+        }
+    });
+
+    sqlInsert = "insert into Tarjeta (numTarjeta, saldo, numCuenta) values"*/
 });
 
 app.post('/api/estado', (req, res) => {

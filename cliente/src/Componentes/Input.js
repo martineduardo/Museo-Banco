@@ -20,20 +20,20 @@ const ComponenteInput = ({estado, cambiarEstado, tipo, label, placeholder, name,
         <div>
             <Label htmlFor={name}>{label}</Label>
             <GrupoInput>
-              <Input
-                type={tipo}
-                name={name}
-                placeholder={placeholder}
-                estado={estado.campo}
-                onChange={onChange}
-                onKeyUp={validacion}
-                onBlur={validacion}
-                valido={estado.valido}
+                <Input
+                    type={tipo}
+                    name={name}
+                    placeholder={placeholder}
+                    estado={estado.campo}
+                    onChange={onChange}
+                    onKeyUp={validacion}
+                    onBlur={validacion}
+                    valido={estado.valido}
                 />
-              <IconoValidacion icon = {faCheckCircle}/>
+                <IconoValidacion icon = {faCheckCircle}/>
             </GrupoInput>
             <LeyendaError valido={estado.valido}>{leyendaError}</LeyendaError>
-          </div>
+        </div>
     );
 }
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { TextField, Button } from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {Formulario, ContenedorBotonCentrado, MensajeError} from './Elementos/Formulario';
+import {Formulario, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './Elementos/Formulario';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import ComponenteInput from './Componentes/Input';
+import Popup from './Componentes/Popup'
 
 function Registro() {
 
@@ -14,30 +15,46 @@ function Registro() {
   const [apellidoMReg, setApellidoMReg] = useState({campo: '', valido: null})
   const [telReg, setTelReg] = useState({campo: '', valido: null})
   const [formularioValido, cambiarFormularioValido] = useState(null)
+  const [botonPopup, setBotonPopup] = useState(false)
 
   const submitCuenta = (e) => {
-    e.preventDefault();
-
+    e.preventDefault()
     if(
       nombreReg.valido === 'true' &&
       apellidoPReg.valido === 'true' &&
       apellidoMReg.valido === 'true' &&
       telReg.valido === 'true') {
         cambiarFormularioValido(true);
+        Axios.post('http://localhost:3001/api/registro', {
+        nombrePila: nombreReg.campo,
+        apellidoPat: apellidoPReg.campo,
+        apellidoMat: apellidoMReg.campo,
+        telCel: telReg.campo
+      }).then(() => {
+        alert("Cuenta registrada")
+      });
+      setNombreReg({campo: '', valido: null})
+      setApellidoPReg({campo: '', valido: null})
+      setApellidoMReg({campo: '', valido: null})
+      setTelReg({campo: '', valido: null})
       }
       else {
         cambiarFormularioValido(false);
       }
 
-    Axios.post('http://localhost:3001/api/registro', {
+    /*Axios.post('http://localhost:3001/api/registro', {
       nombrePila: nombreReg.campo,
       apellidoPat: apellidoPReg.campo,
       apellidoMat: apellidoMReg.campo,
       telCel: telReg.campo
     }).then(() => {
       alert("Cuenta registrada")
-    });
+    });*/
   };
+
+  /*const onSubmit = (e) => {
+    e.preventDefault();
+  }*/
 
   const expresiones = {
     nombre: /^[a-zA-ZÁ-ÿ]{3,20}/,
@@ -50,6 +67,7 @@ function Registro() {
       <div className="icon">
         <div className="icon_class"></div>
         <div className="text">Registro</div>
+        
       </div>
       <div className="form">
         <Formulario action="" onSubmit={submitCuenta}>
@@ -93,25 +111,11 @@ function Registro() {
             leyendaError="El teléfono debe contener únicamente números. Debe ser de 10 dígitos."
             expresionRegular={expresiones.telefono}
           />
-            {/*<div>
-              <br/>
-              <TextField type="text" name="apellidoP" variant="outlined" label="Apellido Paterno" onChange={(e)=>{
-                setApellidoPReg(e.target.value)
-              }}/>
-            </div>
-            <div>
-              <br/>
-              <TextField type="text" name="apellidoM" variant="outlined" label="Apellido Materno" onChange={(e)=>{
-                setApellidoMReg(e.target.value)
-              }}/>
-            </div>
-            <div>
-              <br/>
-              <TextField type="text" name="telefono" variant="outlined" label="Teléfono" onChange={(e)=>{
-                setTelReg(e.target.value)
-              }}/>
-            </div>*/}
-          {false && <MensajeError>
+          <Popup trigger={botonPopup} setTrigger={setBotonPopup}>
+            <h3>Mi popup</h3>
+            <p>Esta es mi ventana emergente</p>
+          </Popup>
+          {formularioValido === false && <MensajeError>
             <p>
               <FontAwesomeIcon icon={faExclamationTriangle}/>
               <b>Error:</b> Por favor rellene el formulario correctamenrte.
@@ -119,7 +123,9 @@ function Registro() {
           </MensajeError>}
           <br/>
           <ContenedorBotonCentrado>
-            <Button type="submit" variant="contained" color="primary">Abrir Cuenta</Button>
+            <Boton type="submit" onClick={() => setBotonPopup(true)}>Abrir Cuenta</Boton>
+            <br/>
+            {formularioValido === true &&<MensajeExito>Cuenta registrada exitosamente.</MensajeExito>}
           </ContenedorBotonCentrado>
         </Formulario>
         <br/>
