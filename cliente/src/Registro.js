@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Formulario, ContenedorBotonCentrado, Boton, MensajeExito, MensajeError} from './Elementos/Formulario';
 import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
 import ComponenteInput from './Componentes/Input';
-import Popup from './Componentes/Popup'
+
 
 function Registro() {
 
@@ -96,10 +96,7 @@ function Registro() {
             leyendaError="El teléfono debe contener únicamente números. Debe ser de 10 dígitos."
             expresionRegular={expresiones.telefono}
           />
-          <Popup trigger={botonPopup} setTrigger={setBotonPopup}>
-            <h3>Mi popup</h3>
-            <p>Esta es mi ventana emergente</p>
-          </Popup>
+          
           {formularioValido === false && <MensajeError>
             <p>
               <FontAwesomeIcon icon={faExclamationTriangle}/>
@@ -108,7 +105,7 @@ function Registro() {
           </MensajeError>}
           <br/>
           <ContenedorBotonCentrado>
-            <Boton type="submit" onClick={() => setBotonPopup(true)}>Abrir Cuenta</Boton>
+            <Boton type="submit" >Abrir Cuenta</Boton>
             <br/>
             {formularioValido === true &&<MensajeExito>Cuenta registrada exitosamente.</MensajeExito>}
           </ContenedorBotonCentrado>
