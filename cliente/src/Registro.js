@@ -14,7 +14,7 @@ function Registro() {
   const [apellidoMReg, setApellidoMReg] = useState({campo: '', valido: null})
   const [telReg, setTelReg] = useState({campo: '', valido: null})
   const [formularioValido, cambiarFormularioValido] = useState(null)
-  const [botonPopup, setBotonPopup] = useState(false)
+  
 
   const submitCuenta = (e) => {
     e.preventDefault()
